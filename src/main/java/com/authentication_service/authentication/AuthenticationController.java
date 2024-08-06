@@ -24,8 +24,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/unauthenticate")
-    public ResponseEntity<String> logout(@RequestBody String jwt) {
-        if(service.logout(jwt)) return ResponseEntity.ok("Logout successful");
+    public ResponseEntity<String> logout(@RequestBody JwtRequest request) {
+        if(service.logout(request.getJwt())) return ResponseEntity.ok("Logout successful");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Logout failed");
     }
 
