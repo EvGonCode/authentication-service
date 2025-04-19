@@ -1,6 +1,7 @@
 package com.authentication_service.authentication;
 
 
+import com.authentication_service.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import com.authentication_service.config.JwtService;
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService service;
+    private final JwtService jwtService;
 
     @PostMapping("/registerUser")
     public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody RegisterRequest request){
