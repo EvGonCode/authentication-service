@@ -13,15 +13,20 @@ import java.util.Collection;
 @Builder
 @Entity
 @AllArgsConstructor
-@Table(name="Users")
+@Table(name="User")
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
     @Column(unique = true)
     private String login;
     private String password;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private String role = "USER";
 
     public User(String login, String password) {
         this.login = login;

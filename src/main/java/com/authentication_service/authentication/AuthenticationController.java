@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.authentication_service.config.JwtService;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class AuthenticationController {
 
     @PostMapping("/verify_jwt")
     public ResponseEntity<String> verifyJwt(@RequestBody String jwt) {
-        if(service.isTokenValid(jwt)) return ResponseEntity.ok("Token is valid");
+        if(service.isTokenValid(jwt)) return ResponseEntity.ok(JwtService.extractLogin(jwt));
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Token is not valid");
     }
 }
